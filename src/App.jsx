@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
-import logo from './assets/background-removed.svg';
+import logo from './assets/pixenect black logo.jpeg';
 import heroSlideThreeBg from './assets/hero-slide-three.jpg';
 import heroSlideFourBg from './assets/hero-slide-four.jpg';
 
