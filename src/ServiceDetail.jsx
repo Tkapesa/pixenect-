@@ -1,8 +1,10 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css';
 import './ServiceDetail.css';
+import SharedHeader from './SharedHeader';
 import logo from './assets/background-removed.svg';
+import useRevealOnScroll from './hooks/useRevealOnScroll';
 
 const SERVICE_DATA = {
   'ui-ux-design': {
@@ -469,20 +471,13 @@ const SERVICE_DATA = {
   },
 };
 
-const NAV_ITEMS = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Our Work', href: '/#our-work' },
-  { label: 'About', href: '/#about' },
-  { label: 'Teams', href: '/#teams' },
-  { label: 'Contact', href: '/#contact' },
-];
-
 function ServiceDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const service = SERVICE_DATA[slug];
   const [openFaq, setOpenFaq] = useState(null);
+
+  useRevealOnScroll([slug]);
 
   useEffect(() => {
     if (!service) {
@@ -501,33 +496,15 @@ function ServiceDetail() {
 
   return (
     <div className="app-root">
-      <nav>
-        <a href="/" className="nav-logo">
-          <img src={logo} alt="Pixenect logo" width="64" height="64" className="nav-logo-image" />
-        </a>
-        <div className="nav-actions">
-          <div className="nav-links">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={item.label === 'Services' ? 'active' : ''}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <a href="/#contact" className="nav-cta nav-cta-main">Get in Touch</a>
-        </div>
-      </nav>
+      <SharedHeader mode="internal" activeNav="Services" darkBackground />
 
       {/* ── Hero ──────────────────────────────────── */}
-      <section className="sd-hero">
-        <div className="sd-hero-inner">
-          <a href="/#services" className="sd-back">
+      <section className="sd-hero" data-reveal>
+        <div className="sd-hero-inner" style={{ '--reveal-delay': '30ms' }}>
+          <Link to="/#services" className="sd-back">
             <i className="ti ti-arrow-left" aria-hidden="true" />
             Back to services
-          </a>
+          </Link>
           <div className="sd-hero-cat">
             <div className="sd-hero-icon">
               <i className={`ti ${service.icon}`} aria-hidden="true" />
@@ -545,7 +522,7 @@ function ServiceDetail() {
       </section>
 
       {/* ── Stats Bar ─────────────────────────────── */}
-      <div className="sd-stats-bar">
+      <div className="sd-stats-bar" data-reveal style={{ '--reveal-delay': '60ms' }}>
         {service.stats.map((stat) => (
           <div className="sd-stat" key={stat.label}>
             <div className="sd-stat-value">{stat.value}</div>
@@ -555,14 +532,14 @@ function ServiceDetail() {
       </div>
 
       {/* ── Deliverables ──────────────────────────── */}
-      <section className="sd-section">
-        <div className="sd-section-header">
+      <section className="sd-section" data-reveal>
+        <div className="sd-section-header" style={{ '--reveal-delay': '50ms' }}>
           <div className="section-eyebrow">What&apos;s included</div>
           <h2 className="sd-section-title">Everything you need, nothing you don&apos;t.</h2>
         </div>
         <div className="sd-deliverables-grid">
-          {service.deliverables.map((item) => (
-            <div className="sd-deliverable-card" key={item.title}>
+          {service.deliverables.map((item, index) => (
+            <div className="sd-deliverable-card" key={item.title} data-reveal style={{ '--reveal-delay': `${80 + index * 70}ms` }}>
               <div className="sd-del-icon">
                 <i className={`ti ${item.icon}`} aria-hidden="true" />
               </div>
@@ -574,16 +551,16 @@ function ServiceDetail() {
       </section>
 
       {/* ── Why Us ────────────────────────────────── */}
-      <section className="sd-section sd-whyus-section">
-        <div className="sd-section-header">
+      <section className="sd-section sd-whyus-section" data-reveal>
+        <div className="sd-section-header" style={{ '--reveal-delay': '50ms' }}>
           <div className="section-eyebrow">Why Pixenect</div>
           <h2 className="sd-section-title">
             What sets our {service.category.toLowerCase()} work apart.
           </h2>
         </div>
         <div className="sd-whyus-grid">
-          {service.whyUs.map((item) => (
-            <div className="sd-whyus-card" key={item.title}>
+          {service.whyUs.map((item, index) => (
+            <div className="sd-whyus-card" key={item.title} data-reveal style={{ '--reveal-delay': `${100 + index * 90}ms` }}>
               <div className="sd-whyus-icon">
                 <i className={`ti ${item.icon}`} aria-hidden="true" />
               </div>
@@ -595,8 +572,8 @@ function ServiceDetail() {
       </section>
 
       {/* ── Case Study ────────────────────────────── */}
-      <section className="sd-section sd-case-section">
-        <div className="sd-case-inner">
+      <section className="sd-section sd-case-section" data-reveal>
+        <div className="sd-case-inner" style={{ '--reveal-delay': '70ms' }}>
           <div className="sd-case-label">
             <span className="sd-case-tag">{service.caseStudy.tag}</span>
             <span className="sd-case-industry">{service.caseStudy.industry}</span>
@@ -615,16 +592,16 @@ function ServiceDetail() {
       </section>
 
       {/* ── Process ───────────────────────────────── */}
-      <section className="sd-section sd-section--dark">
-        <div className="sd-section-header">
+      <section className="sd-section sd-section--dark" data-reveal>
+        <div className="sd-section-header" style={{ '--reveal-delay': '50ms' }}>
           <div className="section-eyebrow sd-eyebrow-light">Our approach</div>
           <h2 className="sd-section-title sd-title-light">
             How we deliver {service.title}.
           </h2>
         </div>
         <div className="sd-process-grid">
-          {service.process.map((step) => (
-            <div className="sd-process-card" key={step.num}>
+          {service.process.map((step, index) => (
+            <div className="sd-process-card" key={step.num} data-reveal style={{ '--reveal-delay': `${100 + index * 100}ms` }}>
               <div className="sd-process-num">{step.num}</div>
               <h3 className="sd-process-title">{step.title}</h3>
               <p className="sd-process-desc">{step.desc}</p>
@@ -634,14 +611,14 @@ function ServiceDetail() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────── */}
-      <section className="sd-section sd-faq-section">
-        <div className="sd-faq-layout">
+      <section className="sd-section sd-faq-section" data-reveal>
+        <div className="sd-faq-layout" style={{ '--reveal-delay': '60ms' }}>
           <div className="sd-faq-left">
             <div className="section-eyebrow">Common questions</div>
             <h2 className="sd-section-title">Frequently<br />asked.</h2>
             <p className="sd-faq-sub">
               Can&apos;t find what you&apos;re looking for?{' '}
-              <a href="/#contact" className="sd-faq-contact-link">Ask us directly.</a>
+              <Link to="/#contact" className="sd-faq-contact-link">Ask us directly.</Link>
             </p>
           </div>
           <div className="sd-faq-list">
@@ -672,8 +649,8 @@ function ServiceDetail() {
       </section>
 
       {/* ── Tools ─────────────────────────────────── */}
-      <section className="sd-section sd-tools-section">
-        <div className="sd-tools-header">
+      <section className="sd-section sd-tools-section" data-reveal>
+        <div className="sd-tools-header" style={{ '--reveal-delay': '60ms' }}>
           <div>
             <div className="section-eyebrow">Tools &amp; technologies</div>
             <h2 className="sd-section-title">
@@ -689,14 +666,20 @@ function ServiceDetail() {
       </section>
 
       {/* ── Related Services ──────────────────────── */}
-      <section className="sd-section sd-related-section">
-        <div className="sd-section-header">
+      <section className="sd-section sd-related-section" data-reveal>
+        <div className="sd-section-header" style={{ '--reveal-delay': '50ms' }}>
           <div className="section-eyebrow">Also from Pixenect</div>
           <h2 className="sd-section-title">Related services.</h2>
         </div>
         <div className="sd-related-grid">
-          {relatedServices.map(([slugKey, svc]) => (
-            <a href={`/services/${slugKey}`} className="sd-related-card" key={slugKey}>
+          {relatedServices.map(([slugKey, svc], index) => (
+            <Link
+              to={`/services/${slugKey}`}
+              className="sd-related-card"
+              key={slugKey}
+              data-reveal
+              style={{ '--reveal-delay': `${90 + index * 90}ms` }}
+            >
               <div className="sd-related-icon">
                 <i className={`ti ${svc.icon}`} aria-hidden="true" />
               </div>
@@ -706,67 +689,101 @@ function ServiceDetail() {
               <span className="sd-related-link">
                 View service <i className="ti ti-arrow-right" aria-hidden="true" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
       {/* ── CTA ───────────────────────────────────── */}
-      <div className="cta-band">
-        <p>
-          <strong>Ready to get started with {service.title}?</strong> Tell us about your
-          project and we&apos;ll respond with a tailored proposal within 48 hours.
-        </p>
-        <a href="/#contact" className="cta-btn">Start a Project</a>
-      </div>
+      <section className="cta-section" id="contact">
+        <div className="cta-inner" data-reveal style={{ '--reveal-delay': '60ms' }}>
+          <div className="eyebrow cta-ew">Let&apos;s talk</div>
+          <h2 className="cta-h">Let&apos;s build something<br />great.</h2>
+          <a href="mailto:hello@pixenect.com" className="cta-contact-btn">
+            CONTACT <i className="ti ti-arrow-up-right" aria-hidden="true" />
+          </a>
+          <div className="cta-details">
+            <a href="tel:+905338866227" className="cta-detail">+90 533 886 6227</a>
+            <span className="cta-bull" aria-hidden="true">·</span>
+            <a href="mailto:hello@pixenect.com" className="cta-detail">hello@pixenect.com</a>
+          </div>
+          <p className="cta-blurb">
+            Ready to get started with {service.title}? Tell us about your
+            project and we&apos;ll respond with a tailored proposal within 48 hours.
+          </p>
+        </div>
+      </section>
 
       {/* ── Footer ────────────────────────────────── */}
       <footer className="site-footer">
-        <div className="footer-grid">
-          <div className="footer-col">
-            <h3 className="footer-title">Quick Links</h3>
-            <div className="footer-stack">
-              <a href="/#about">About us</a>
-              <a href="/#services">Services</a>
-              <a href="/#our-work">Our Work</a>
-              <a href="/#teams">Teams</a>
-              <a href="/#contact">Contact</a>
+        <div className="footer-shell" data-reveal style={{ '--reveal-delay': '40ms' }}>
+          <section className="footer-brand-col" aria-label="Company details and contact">
+            <div className="footer-brand-name" aria-label="Pixenect logo">
+              <img src={logo} alt="Pixenect logo" width="194" height="45" className="footer-brand-logo" />
             </div>
-          </div>
-          <div className="footer-col">
-            <h3 className="footer-title">Our Services</h3>
-            <div className="footer-stack">
+            <p className="footer-brand-copy">
+              We design, build, and grow high-performance digital products for
+              ambitious brands that want clarity, speed, and measurable results.
+            </p>
+
+            <form className="footer-subscribe" onSubmit={(e) => e.preventDefault()}>
+              <input
+                className="footer-email-input"
+                type="email"
+                placeholder="Enter your email"
+                aria-label="Enter your email"
+              />
+              <button type="submit" className="footer-subscribe-btn">
+                Subscribe <i className="ti ti-arrow-up-right" aria-hidden="true" />
+              </button>
+            </form>
+
+            <div className="footer-contact-lines">
+              <a href="mailto:hello@pixenect.com">hello@pixenect.com</a>
+              <span className="footer-contact-sep" aria-hidden="true">|</span>
+              <a href="tel:+905338866227">+90 533 886 6227</a>
+            </div>
+          </section>
+
+          <section className="footer-links-grid" aria-label="Footer navigation">
+            <div className="footer-link-col">
+              <h3>Services</h3>
               {Object.entries(SERVICE_DATA).map(([slugKey, svc]) => (
-                <a key={slugKey} href={`/services/${slugKey}`}>{svc.title}</a>
+                <Link key={slugKey} to={`/services/${slugKey}`}>{svc.title}</Link>
               ))}
             </div>
-          </div>
-          <div className="footer-col footer-connect">
-            <h3 className="footer-title">Connect with us</h3>
-            <h4 className="footer-follow-title">Follow Us</h4>
-            <div className="footer-socials" aria-label="Footer social links">
-              <a href="#" aria-label="Facebook"><i className="ti ti-brand-facebook" aria-hidden="true" /></a>
-              <a href="#" aria-label="X"><i className="ti ti-brand-x" aria-hidden="true" /></a>
-              <a href="#" aria-label="Instagram"><i className="ti ti-brand-instagram" aria-hidden="true" /></a>
-              <a href="#" aria-label="LinkedIn"><i className="ti ti-brand-linkedin" aria-hidden="true" /></a>
+
+            <div className="footer-link-col">
+              <h3>Company</h3>
+              <Link to="/about">About</Link>
+              <Link to="/#services">Services</Link>
+              <Link to="/#our-work">Our Work</Link>
+              <Link to="/#contact">Contact</Link>
             </div>
-            <button
-              type="button"
-              className="footer-contact-btn"
-              onClick={() => { window.location.href = '/#contact'; }}
-            >
-              Contact Us
-            </button>
-          </div>
-          <div className="footer-col footer-brand-col">
-            <div className="footer-brand-logo-wrap">
-              <img src={logo} alt="Pixenect" width="64" height="64" className="footer-brand-logo" />
+
+            <div className="footer-link-col">
+              <h3>Get Started</h3>
+              <Link to="/#contact">Start a Project</Link>
+              <a href="mailto:hello@pixenect.com">Email Us</a>
+              <a href="tel:+905338866227">Call Us</a>
+              <Link to="/">Back to Home</Link>
             </div>
-          </div>
+
+            <div className="footer-link-col footer-link-col--legal">
+              <h3>Legal</h3>
+              <Link to="/privacy">Privacy Policy</Link>
+            </div>
+          </section>
         </div>
+
         <div className="footer-bottom">
-          <div className="footer-copy">&copy; 2026 Pixenect Digital Services. All rights reserved.</div>
-          <div className="footer-reg">Register at Pixenect 1122 @ 121</div>
+          <div className="footer-copy">&copy; 2026 PIXENECT. ALL RIGHTS RESERVED.</div>
+          <div className="footer-socials" aria-label="Social links">
+            <a href="#" aria-label="Facebook"><i className="ti ti-brand-facebook" aria-hidden="true" /></a>
+            <a href="#" aria-label="Instagram"><i className="ti ti-brand-instagram" aria-hidden="true" /></a>
+            <a href="#" aria-label="LinkedIn"><i className="ti ti-brand-linkedin" aria-hidden="true" /></a>
+            <a href="#" aria-label="X"><i className="ti ti-brand-x" aria-hidden="true" /></a>
+          </div>
         </div>
       </footer>
     </div>

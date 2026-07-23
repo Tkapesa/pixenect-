@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
 
 *, *::before, *::after {
@@ -11,15 +11,46 @@ html {
   font-size: 16px;
 }
 
+:root {
+  --bg-main: #0F1115;
+  --bg-section: #14181F;
+  --bg-card: #1B2028;
+  --bg-hover: #232A34;
+
+  --text-primary: #F3F4F6;
+  --text-secondary: #B0BAC8;
+  --text-muted: #6B7280;
+
+  --border-soft: rgba(255, 255, 255, 0.08);
+
+  --accent-primary: #10B981;
+  --accent-hover: #059669;
+  --success: #22C55E;
+
+  --danger: #EF4444;
+  --warning: #F59E0B;
+}
+
 body {
-  font-family: 'Source Sans 3', sans-serif;
-  background: #f2f2f0;
-  color: #1a1a1a;
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: crosshair;
 }
 
 a {
   text-decoration: none;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+label,
+[role='button'] {
+  cursor: crosshair;
 }
