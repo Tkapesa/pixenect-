@@ -716,7 +716,17 @@ function ServiceDetail() {
 
       {/* ── Footer ────────────────────────────────── */}
       <footer className="site-footer">
-        <div className="footer-shell" data-reveal style={{ '--reveal-delay': '40ms' }}>
+        <div className="footer-cta-band" data-reveal>
+          <div className="footer-cta-text">
+            <p className="footer-cta-eyebrow">Let's work together</p>
+            <h2 className="footer-cta-heading">Ready to build something<br />remarkable?</h2>
+          </div>
+          <Link to="/#contact" className="footer-cta-action">
+            Start a Project <i className="ti ti-arrow-up-right" aria-hidden="true" />
+          </Link>
+        </div>
+
+        <div className="footer-shell" data-reveal style={{ '--reveal-delay': '120ms' }}>
           <section className="footer-brand-col" aria-label="Company details and contact">
             <div className="footer-brand-name" aria-label="Pixenect logo">
               <img src={logo} alt="Pixenect logo" width="194" height="45" className="footer-brand-logo" />

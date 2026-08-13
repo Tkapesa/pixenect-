@@ -143,13 +143,11 @@ function App() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.setAttribute('data-revealed', 'true');
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0) scale(1)';
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     );
 
     animated.forEach((el) => observer.observe(el));
@@ -279,10 +277,10 @@ function App() {
 
       {/* WHY */}
       <section className="why-section" id="about">
-        <div className="why-header" data-reveal>
-          <div className="eyebrow">Why Pixenect</div>
-          <h2>One Partner.<br />Every Discipline.</h2>
-          <p>From complex software integrations to brand identities — we bring every discipline in-house so your vision never gets lost in translation between agencies.</p>
+        <div className="why-header">
+          <div className="eyebrow" data-reveal>Why Pixenect</div>
+          <h2 data-reveal data-dir="left" style={{ '--reveal-delay': '60ms' }}>One Partner.<br />Every Discipline.</h2>
+          <p data-reveal data-dir="right" style={{ '--reveal-delay': '120ms' }}>From complex software integrations to brand identities — we bring every discipline in-house so your vision never gets lost in translation between agencies.</p>
         </div>
         <div className="why-grid">
           {WHY_ITEMS.map((item) => (
@@ -313,12 +311,13 @@ function App() {
           <h2>Projects that<br />speak for themselves.</h2>
         </div>
         <div className="work-grid">
-          {WORK_ITEMS.map((item) => (
+          {WORK_ITEMS.map((item, idx) => (
             <article
               key={item.id}
               className="work-card"
               data-reveal
-              style={{ '--reveal-delay': `${Number(item.id) * 80}ms` }}
+              data-dir={idx % 2 === 0 ? 'left' : 'right'}
+              style={{ '--reveal-delay': `${idx * 100}ms` }}
             >
               <div className="work-card-head">
                 <span className="work-card-category">{item.category}</span>
@@ -354,15 +353,15 @@ function App() {
 
       {/* FAQ */}
       <section className="faq-section">
-        <div className="faq-grid" data-reveal>
-          <div className="faq-left">
+        <div className="faq-grid">
+          <div className="faq-left" data-reveal data-dir="left">
             <div className="eyebrow">Questions?</div>
             <h2>Frequently asked<br />questions</h2>
             <button type="button" className="faq-ask" onClick={() => scrollToSection('Contact')}>
               Ask us anything <i className="ti ti-arrow-up-right" aria-hidden="true" />
             </button>
           </div>
-          <div className="faq-right">
+          <div className="faq-right" data-reveal data-dir="right" style={{ '--reveal-delay': '100ms' }}>
             {FAQS.map((item, i) => (
               <div key={i} className={`faq-item${openFaq === i ? ' open' : ''}`}>
                 <button type="button" className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i}>
@@ -398,7 +397,21 @@ function App() {
 
       {/* FOOTER */}
       <footer className="site-footer">
-        <div className="footer-shell" data-reveal>
+        <div className="footer-cta-band" data-reveal>
+          <div className="footer-cta-text">
+            <p className="footer-cta-eyebrow">Let's work together</p>
+            <h2 className="footer-cta-heading">Ready to build something<br />remarkable?</h2>
+          </div>
+          <a
+            href="#"
+            className="footer-cta-action"
+            onClick={(e) => { e.preventDefault(); scrollToSection('Contact'); }}
+          >
+            Start a Project <i className="ti ti-arrow-up-right" aria-hidden="true" />
+          </a>
+        </div>
+
+        <div className="footer-shell" data-reveal style={{ '--reveal-delay': '120ms' }}>
           <section className="footer-brand-col" aria-label="Company details and contact">
             <div className="footer-brand-name" aria-label="Pixenect logo">
               <img src={footerLogo} alt="Pixenect logo" width="194" height="45" className="footer-brand-logo" />
