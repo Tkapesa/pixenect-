@@ -208,7 +208,7 @@ function SharedHeader({ mode = 'home', activeNav = 'Home', onNavigateSection, da
             setIsMobileMenuOpen(false);
           }}
         >
-          Get a Quote
+          Book a Strategy Call
         </button>
       </div>
     </nav>
