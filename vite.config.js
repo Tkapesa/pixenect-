@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/pixenect-/',
+  base: process.env.GITHUB_PAGES === 'true' ? '/pixenect-/' : './',
   plugins: [react()],
 })
