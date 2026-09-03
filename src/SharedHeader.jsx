@@ -3,11 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from './assets/background-removed.svg';
 
 const NAV_ITEMS = [
-  { label: 'Home', section: 'home' },
+  { label: 'About', section: 'about' },
   { label: 'Services', section: 'services' },
   { label: 'Our Work', section: 'our-work' },
   { label: 'Process', section: 'process' },
-  { label: 'About', section: 'about' },
   { label: 'Contact', section: 'contact' },
 ];
 
@@ -126,7 +125,7 @@ function SharedHeader({ mode = 'home', activeNav = 'Home', onNavigateSection, da
               return (
                 <div
                   key={item.label}
-                  className={`nav-item nav-item--dropdown${item.label === 'About' ? ' nav-item--dropdown-right' : ''}${isItemActive(item.label) ? ' nav-item--active' : ''}`}
+                  className={`nav-item nav-item--dropdown${isItemActive(item.label) ? ' nav-item--active' : ''}`}
                 >
                   <button
                     type="button"

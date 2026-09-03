@@ -114,6 +114,9 @@
 .nav-links {
   display: flex;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .nav-item {
   position: relative;
@@ -1572,7 +1575,13 @@ a.nav-logo {
     gap: 0;
     z-index: 999;
   }
-  .nav-body.open .nav-links { flex-direction: column; align-items: flex-start; width: 100%; }
+  .nav-body.open .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    position: static;
+    width: 100%;
+    transform: none;
+  }
   .nav-body.open .nav-item { width: 100%; }
   .nav-body.open .nav-link-btn,
   .nav-body.open .nav-links a {
