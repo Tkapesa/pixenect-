@@ -73,8 +73,8 @@ function App() {
       <SharedHeader mode="home" activeNav={activeNav} onNavigateSection={scrollToSection} />
 
       <section className="vhero rewrite-hero" id="home" aria-label="Hero">
-        <video className="vhero-video" autoPlay muted loop playsInline preload="auto" poster="/hero-bg.jpg" aria-hidden="true">
-          <source src="/hero-video.mp4" type="video/mp4" />
+        <video className="vhero-video" autoPlay muted loop playsInline preload="auto" poster={`${import.meta.env.BASE_URL}hero-bg.jpg`} aria-hidden="true">
+          <source src={`${import.meta.env.BASE_URL}hero-video.mp4`} type="video/mp4" />
         </video>
         <div className="hero-grid" aria-hidden="true" />
         <div className="vhero-content" data-reveal>
