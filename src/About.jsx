@@ -13,7 +13,7 @@ function About() {
       <section className="about-hero" data-reveal>
         <div className="about-hero-inner" style={{ '--reveal-delay': '40ms' }}>
           <p className="about-eyebrow">About Pixenect</p>
-          <h1>We build digital products that move businesses forward.</h1>
+          <h1>We deliver digital solutions that help businesses build, grow, and make profits.</h1>
           <p className="about-hero-copy">
             Pixenect is a multidisciplinary digital studio combining strategy, design,
             engineering, and growth. We partner with ambitious teams to create work
@@ -32,7 +32,7 @@ function About() {
           </p>
         </article>
         <article className="about-card" data-reveal style={{ '--reveal-delay': '150ms' }}>
-          <h2>How We Work</h2>
+          <h2>Our Vision</h2>
           <p>
             We run in tight sprint cycles with transparent communication, clear
             ownership, and fast decision loops. You always know what is being built,
@@ -40,7 +40,7 @@ function About() {
           </p>
         </article>
         <article className="about-card" data-reveal style={{ '--reveal-delay': '220ms' }}>
-          <h2>What We Value</h2>
+          <h2>Our Core Values</h2>
           <p>
             Craft, clarity, and momentum. We care deeply about details, we avoid
             unnecessary complexity, and we focus on shipping outcomes that matter.

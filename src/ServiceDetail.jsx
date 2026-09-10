@@ -767,7 +767,7 @@ function ServiceDetail() {
               <h3>Company</h3>
               <Link to="/about">About</Link>
               <Link to="/#services">Services</Link>
-              <Link to="/#our-work">Our Work</Link>
+              <Link to="/#process">Our Work</Link>
               <Link to="/#contact">Contact</Link>
             </div>
 
@@ -789,10 +789,10 @@ function ServiceDetail() {
         <div className="footer-bottom">
           <div className="footer-copy">&copy; 2026 PIXENECT. ALL RIGHTS RESERVED.</div>
           <div className="footer-socials" aria-label="Social links">
-            <a href="#" aria-label="Facebook"><i className="ti ti-brand-facebook" aria-hidden="true" /></a>
-            <a href="#" aria-label="Instagram"><i className="ti ti-brand-instagram" aria-hidden="true" /></a>
-            <a href="#" aria-label="LinkedIn"><i className="ti ti-brand-linkedin" aria-hidden="true" /></a>
-            <a href="#" aria-label="X"><i className="ti ti-brand-x" aria-hidden="true" /></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook"><i className="ti ti-brand-facebook" aria-hidden="true" /></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><i className="ti ti-brand-instagram" aria-hidden="true" /></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i className="ti ti-brand-linkedin" aria-hidden="true" /></a>
+            <a href="https://x.com/" target="_blank" rel="noreferrer" aria-label="X"><i className="ti ti-brand-x" aria-hidden="true" /></a>
           </div>
         </div>
       </footer>

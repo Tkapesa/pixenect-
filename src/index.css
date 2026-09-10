@@ -38,7 +38,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: crosshair;
+  cursor: default;
 }
 
 a {
@@ -52,5 +52,5 @@ select,
 textarea,
 label,
 [role='button'] {
-  cursor: crosshair;
+  cursor: pointer;
 }
