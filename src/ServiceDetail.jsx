@@ -699,13 +699,13 @@ function ServiceDetail() {
         <div className="cta-inner" data-reveal style={{ '--reveal-delay': '60ms' }}>
           <div className="eyebrow cta-ew">Let&apos;s talk</div>
           <h2 className="cta-h">Let&apos;s build something<br />great.</h2>
-          <a href="mailto:hello@pixenect.com" className="cta-contact-btn">
+          <a href="mailto:info@pixenect.com" className="cta-contact-btn">
             CONTACT <i className="ti ti-arrow-up-right" aria-hidden="true" />
           </a>
           <div className="cta-details">
-            <a href="tel:+905338866227" className="cta-detail">+90 533 886 6227</a>
+            <a href="tel:+905428861113" className="cta-detail">+90 542 886 1113</a>
             <span className="cta-bull" aria-hidden="true">·</span>
-            <a href="mailto:hello@pixenect.com" className="cta-detail">hello@pixenect.com</a>
+            <a href="mailto:info@pixenect.com" className="cta-detail">info@pixenect.com</a>
           </div>
           <p className="cta-blurb">
             Ready to get started with {service.title}? Tell us about your
@@ -749,9 +749,9 @@ function ServiceDetail() {
             </form>
 
             <div className="footer-contact-lines">
-              <a href="mailto:hello@pixenect.com">hello@pixenect.com</a>
+              <a href="mailto:info@pixenect.com">info@pixenect.com</a>
               <span className="footer-contact-sep" aria-hidden="true">|</span>
-              <a href="tel:+905338866227">+90 533 886 6227</a>
+              <a href="tel:+905428861113">+90 542 886 1113</a>
             </div>
           </section>
 
@@ -774,8 +774,8 @@ function ServiceDetail() {
             <div className="footer-link-col">
               <h3>Get Started</h3>
               <Link to="/#contact">Start a Project</Link>
-              <a href="mailto:hello@pixenect.com">Email Us</a>
-              <a href="tel:+905338866227">Call Us</a>
+              <a href="mailto:info@pixenect.com">Email Us</a>
+              <a href="tel:+905428861113">Call Us</a>
               <Link to="/">Back to Home</Link>
             </div>
 
