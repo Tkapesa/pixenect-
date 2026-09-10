@@ -5,7 +5,7 @@ import logo from './assets/background-removed.svg';
 const NAV_ITEMS = [
   { label: 'Home', section: 'home' },
   { label: 'Services', section: 'services' },
-  { label: 'Our Work', section: 'our-work' },
+  { label: 'Our Work', section: 'process' },
   { label: 'Process', section: 'process' },
   { label: 'About', section: 'about' },
   { label: 'Contact', section: 'contact' },
