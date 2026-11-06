@@ -772,3 +772,211 @@
 		grid-template-columns: 1fr;
 	}
 }
+
+.service-page {
+	--accent-primary: #10b981;
+	--accent-hover: #059669;
+	--text-dark: #f0f0f8;
+	--text-dark-soft: #a1a1aa;
+	--border-dark-soft: rgba(240, 240, 248, 0.1);
+	background: #0a0a0b;
+}
+
+.service-page .sd-hero {
+	padding: 144px clamp(24px, 6vw, 88px) 80px;
+	background:
+		radial-gradient(90% 100% at 8% 0%, rgba(16, 185, 129, 0.14), transparent 62%),
+		#0a0a0b;
+	border-color: var(--border-dark-soft);
+}
+
+.service-page .sd-hero::before {
+	background:
+		linear-gradient(rgba(240, 240, 248, 0.035) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(240, 240, 248, 0.035) 1px, transparent 1px);
+	background-size: 64px 64px;
+	opacity: 0.7;
+}
+
+.service-page .sd-back {
+	color: #10b981;
+}
+
+.service-page .sd-back:hover {
+	color: #f0f0f8;
+}
+
+.service-page .sd-hero-icon,
+.service-page .sd-metric,
+.service-page .sd-deliverable-card,
+.service-page .sd-process-card,
+.service-page .sd-tool-tag,
+.service-page .sd-stat,
+.service-page .sd-whyus-card,
+.service-page .sd-case-metric,
+.service-page .sd-faq-list,
+.service-page .sd-faq-q,
+.service-page .sd-related-card {
+	background: rgba(240, 240, 248, 0.025);
+	color: var(--text-dark);
+}
+
+.service-page .sd-metric {
+	background: rgba(240, 240, 248, 0.035);
+}
+
+.service-page .sd-section,
+.service-page .sd-section--dark,
+.service-page .sd-tools-section,
+.service-page .sd-whyus-section,
+.service-page .sd-faq-section,
+.service-page .sd-related-section {
+	background: #0a0a0b;
+	border-color: var(--border-dark-soft);
+}
+
+.service-page .sd-section:nth-of-type(even) {
+	background: #0d0d10;
+}
+
+.service-page .sd-deliverables-grid,
+.service-page .sd-process-grid,
+.service-page .sd-faq-list {
+	border-color: var(--border-dark-soft);
+	background: rgba(240, 240, 248, 0.08);
+	box-shadow: none;
+}
+
+.service-page .sd-deliverable-card,
+.service-page .sd-process-card {
+	background: #111115;
+}
+
+.service-page .sd-deliverable-card:hover,
+.service-page .sd-process-card:hover,
+.service-page .sd-faq-q:hover,
+.service-page .sd-faq-item--open .sd-faq-q {
+	background: #18131a;
+}
+
+.service-page .sd-del-icon,
+.service-page .sd-whyus-icon,
+.service-page .sd-related-icon {
+	background: rgba(16, 185, 129, 0.12);
+	color: #10b981;
+}
+
+.service-page .sd-section-title,
+.service-page .sd-title-light,
+.service-page .sd-hero-title,
+.service-page .sd-metric-num,
+.service-page .sd-stat-value,
+.service-page .sd-del-title,
+.service-page .sd-process-title,
+.service-page .sd-whyus-title,
+.service-page .sd-case-client,
+.service-page .sd-case-metric-val,
+.service-page .sd-related-title {
+	color: #f0f0f8;
+}
+
+.service-page .section-eyebrow,
+.service-page .sd-eyebrow-light {
+	color: #10b981;
+}
+
+.service-page .sd-stats-bar {
+	background: #0d0d10;
+	border-color: var(--border-dark-soft);
+}
+
+.service-page .sd-stat {
+	border-color: var(--border-dark-soft);
+}
+
+.service-page .sd-case-section {
+	background:
+		radial-gradient(80% 120% at 10% 20%, rgba(16, 185, 129, 0.1), transparent 64%),
+		#0d0d10;
+}
+
+.service-page .sd-case-tag {
+	color: rgba(240, 240, 248, 0.78);
+	background: rgba(240, 240, 248, 0.04);
+}
+
+.service-page .sd-case-industry,
+.service-page .sd-process-num {
+	color: rgba(240, 240, 248, 0.45);
+}
+
+.service-page .sd-case-metric {
+	background: rgba(240, 240, 248, 0.035);
+}
+
+.service-page .sd-faq-a {
+	background: #111115;
+	color: #a1a1aa;
+}
+
+.service-page .sd-related-card {
+	border-color: var(--border-dark-soft);
+}
+
+.service-page .sd-related-card:hover,
+.service-page .sd-tool-tag:hover {
+	border-color: rgba(16, 185, 129, 0.6);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.service-page .sd-related-link,
+.service-page .sd-faq-contact-link {
+	color: #10b981;
+}
+
+.service-page .sd-hero-title {
+	font-size: clamp(2.2rem, 5vw, 4.1rem);
+	font-weight: 600;
+	letter-spacing: -0.065em;
+}
+
+.service-page .sd-section {
+	padding-right: clamp(24px, 6vw, 88px);
+	padding-left: clamp(24px, 6vw, 88px);
+}
+
+@media (max-width: 760px) {
+	.service-page .sd-hero {
+		padding-top: 128px;
+	}
+
+	.service-page .sd-hero-title {
+		font-size: clamp(2.1rem, 8vw, 3.4rem);
+	}
+}
+
+.service-page .sd-hero-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+	align-items: center;
+	gap: clamp(20px, 4vw, 72px);
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.service-page .sd-hero-inner {
+	max-width: 760px;
+}
+
+@media (max-width: 900px) {
+	.service-page .sd-hero-layout {
+		grid-template-columns: minmax(0, 1fr) minmax(240px, 0.8fr);
+		gap: 12px;
+	}
+}
+
+@media (max-width: 680px) {
+	.service-page .sd-hero-layout {
+		grid-template-columns: 1fr;
+	}
+}

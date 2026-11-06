@@ -1,7 +1,17 @@
 import SharedHeader from './SharedHeader';
 import './App.css';
 import './ProjectProcess.css';
+import SiteFooter from './components/SiteFooter';
+import ServiceDotVisual from './components/ServiceDotVisual';
+import DotPageBackdrop from './components/DotPageBackdrop';
 import useRevealOnScroll from './hooks/useRevealOnScroll';
+import { Link } from 'react-router-dom';
+
+const PROCESS_VISUAL = {
+  category: 'Our process',
+  title: 'Six clear stages',
+  tagline: 'From first conversation to lasting growth.',
+};
 
 const PHASES = [
   {
@@ -70,18 +80,33 @@ function ProjectProcess() {
 
   return (
     <main className="app-root process-page">
+      <DotPageBackdrop variant="process" />
       <SharedHeader mode="internal" activeNav="Process" />
 
       <section className="process-hero" data-reveal>
-        <div className="process-hero-inner" style={{ '--reveal-delay': '40ms' }}>
-          <p className="process-eyebrow">Project Process</p>
-          <h1>
-            From kick-off to growth, every stage is structured, visible, and built for momentum.
-          </h1>
-          <p className="process-hero-copy">
-            Our lifecycle is designed to turn complex digital work into a clear journey. You always know where
-            we are, what is happening next, and how each phase moves your business forward.
-          </p>
+        <div className="process-hero-layout">
+          <div className="process-hero-inner" style={{ '--reveal-delay': '40ms' }}>
+            <p className="process-eyebrow"><span aria-hidden="true" /> Our process, made clear</p>
+            <h1>Good work doesn&apos;t happen <span>by accident.</span></h1>
+            <p className="process-hero-copy">
+              A clear, collaborative path from the first conversation to a launch
+              that keeps delivering. You always know what we&apos;re doing and why.
+            </p>
+            <div className="process-hero-actions">
+              <a href="#lifecycle" className="process-primary-link">
+                Explore the process <i className="ti ti-arrow-down" aria-hidden="true" />
+              </a>
+              <Link to="/#contact" className="process-secondary-link">
+                Start a project <i className="ti ti-arrow-up-right" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="process-hero-meta">
+              <span>01 / Align</span><i aria-hidden="true" />
+              <span>02 / Create</span><i aria-hidden="true" />
+              <span>03 / Grow</span>
+            </div>
+          </div>
+          <ServiceDotVisual service={PROCESS_VISUAL} variant="process" />
         </div>
       </section>
 
@@ -110,10 +135,10 @@ function ProjectProcess() {
         </div>
       </section>
 
-      <section className="process-lifecycle" aria-label="Project lifecycle stages" data-reveal>
+      <section id="lifecycle" className="process-lifecycle" aria-label="Project lifecycle stages" data-reveal>
         <div className="process-lifecycle-head" style={{ '--reveal-delay': '90ms' }}>
           <p className="process-section-label">Featured Lifecycle</p>
-          <h2>Numbered vertical grid with clear action phases.</h2>
+          <h2>A deliberate process. No surprises.</h2>
         </div>
 
         <div className="process-grid">
@@ -138,10 +163,11 @@ function ProjectProcess() {
 
       <section className="process-cta" data-reveal style={{ '--reveal-delay': '70ms' }}>
         <div className="process-cta-inner">
-          <h2>Ready to start your project journey?</h2>
-          <a href="/#contact">Book Your Kick-off Call</a>
+          <h2>Ready to move your next project forward?</h2>
+          <a href="/#contact">Book a strategy call <i className="ti ti-arrow-up-right" aria-hidden="true" /></a>
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }

@@ -1,0 +1,66 @@
+.service-dot-visual {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-width: 0;
+  min-height: 460px;
+  place-items: center;
+  overflow: hidden;
+}
+
+.service-dot-canvas,
+.service-dot-glow {
+  position: absolute;
+  inset: 0;
+}
+
+.service-dot-canvas {
+  z-index: 1;
+}
+
+.service-dot-glow {
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.14), rgba(16, 185, 129, 0.035) 38%, transparent 72%);
+  filter: blur(12px);
+}
+
+.service-dot-orbit-label {
+  position: absolute;
+  z-index: 2;
+  color: rgba(209, 250, 229, 0.72);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.service-dot-orbit-label--top {
+  top: 17%;
+  right: 4%;
+}
+
+.service-dot-orbit-label--bottom {
+  right: 10%;
+  bottom: 10%;
+  left: 10%;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .service-dot-visual {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 680px) {
+  .service-dot-visual {
+    min-height: 340px;
+    margin-top: 12px;
+  }
+
+  .service-dot-orbit-label--top {
+    right: 7%;
+  }
+}

@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import './ServiceDetail.css';
 import SharedHeader from './SharedHeader';
-import logo from './assets/background-removed.svg';
+import CtaSection from './components/CtaSection';
+import ServiceDotVisual from './components/ServiceDotVisual';
+import DotPageBackdrop from './components/DotPageBackdrop';
+import SiteFooter from './components/SiteFooter';
 import useRevealOnScroll from './hooks/useRevealOnScroll';
 
 const SERVICE_DATA = {
@@ -471,11 +474,41 @@ const SERVICE_DATA = {
   },
 };
 
+function FaqSection({ faqs }) {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  return (
+    <div className="sd-faq-list">
+      {faqs.map((faq, i) => (
+        <div
+          className={`sd-faq-item ${openFaq === i ? 'sd-faq-item--open' : ''}`}
+          key={faq.q}
+        >
+          <button
+            type="button"
+            className="sd-faq-q"
+            onClick={() => setOpenFaq(openFaq === i ? null : i)}
+            aria-expanded={openFaq === i}
+          >
+            <span>{faq.q}</span>
+            <i
+              className={`ti ${openFaq === i ? 'ti-minus' : 'ti-plus'}`}
+              aria-hidden="true"
+            />
+          </button>
+          {openFaq === i && (
+            <div className="sd-faq-a">{faq.a}</div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ServiceDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const service = SERVICE_DATA[slug];
-  const [openFaq, setOpenFaq] = useState(null);
 
   useRevealOnScroll([slug]);
 
@@ -485,7 +518,6 @@ function ServiceDetail() {
       return;
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
-    setOpenFaq(null);
   }, [slug, service, navigate]);
 
   if (!service) return null;
@@ -495,29 +527,33 @@ function ServiceDetail() {
     .slice(0, 3);
 
   return (
-    <div className="app-root">
+    <div className="app-root service-page">
+      <DotPageBackdrop variant={slug} />
       <SharedHeader mode="internal" activeNav="Services" darkBackground />
 
       {/* ── Hero ──────────────────────────────────── */}
       <section className="sd-hero" data-reveal>
-        <div className="sd-hero-inner" style={{ '--reveal-delay': '30ms' }}>
-          <Link to="/#services" className="sd-back">
-            <i className="ti ti-arrow-left" aria-hidden="true" />
-            Back to services
-          </Link>
-          <div className="sd-hero-cat">
-            <div className="sd-hero-icon">
-              <i className={`ti ${service.icon}`} aria-hidden="true" />
+        <div className="sd-hero-layout">
+          <div className="sd-hero-inner" style={{ '--reveal-delay': '30ms' }}>
+            <Link to="/#services" className="sd-back">
+              <i className="ti ti-arrow-left" aria-hidden="true" />
+              Back to services
+            </Link>
+            <div className="sd-hero-cat">
+              <div className="sd-hero-icon">
+                <i className={`ti ${service.icon}`} aria-hidden="true" />
+              </div>
+              <span className="sd-cat-label">{service.category}</span>
             </div>
-            <span className="sd-cat-label">{service.category}</span>
+            <h1 className="sd-hero-title">{service.title}</h1>
+            <p className="sd-hero-tagline">{service.tagline}</p>
+            <p className="sd-hero-desc">{service.description}</p>
+            <div className="sd-metric">
+              <div className="sd-metric-num">{service.metric.value}</div>
+              <div className="sd-metric-label">{service.metric.label}</div>
+            </div>
           </div>
-          <h1 className="sd-hero-title">{service.title}</h1>
-          <p className="sd-hero-tagline">{service.tagline}</p>
-          <p className="sd-hero-desc">{service.description}</p>
-          <div className="sd-metric">
-            <div className="sd-metric-num">{service.metric.value}</div>
-            <div className="sd-metric-label">{service.metric.label}</div>
-          </div>
+          <ServiceDotVisual service={service} variant={slug} />
         </div>
       </section>
 
@@ -621,30 +657,7 @@ function ServiceDetail() {
               <Link to="/#contact" className="sd-faq-contact-link">Ask us directly.</Link>
             </p>
           </div>
-          <div className="sd-faq-list">
-            {service.faqs.map((faq, i) => (
-              <div
-                className={`sd-faq-item ${openFaq === i ? 'sd-faq-item--open' : ''}`}
-                key={faq.q}
-              >
-                <button
-                  type="button"
-                  className="sd-faq-q"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  aria-expanded={openFaq === i}
-                >
-                  <span>{faq.q}</span>
-                  <i
-                    className={`ti ${openFaq === i ? 'ti-minus' : 'ti-plus'}`}
-                    aria-hidden="true"
-                  />
-                </button>
-                {openFaq === i && (
-                  <div className="sd-faq-a">{faq.a}</div>
-                )}
-              </div>
-            ))}
-          </div>
+          <FaqSection key={slug} faqs={service.faqs} />
         </div>
       </section>
 
@@ -694,108 +707,8 @@ function ServiceDetail() {
         </div>
       </section>
 
-      {/* ── CTA ───────────────────────────────────── */}
-      <section className="cta-section" id="contact">
-        <div className="cta-inner" data-reveal style={{ '--reveal-delay': '60ms' }}>
-          <div className="eyebrow cta-ew">Let&apos;s talk</div>
-          <h2 className="cta-h">Let&apos;s build something<br />great.</h2>
-          <a href="mailto:info@pixenect.com" className="cta-contact-btn">
-            CONTACT <i className="ti ti-arrow-up-right" aria-hidden="true" />
-          </a>
-          <div className="cta-details">
-            <a href="tel:+905428861113" className="cta-detail">+90 542 886 1113</a>
-            <span className="cta-bull" aria-hidden="true">·</span>
-            <a href="mailto:info@pixenect.com" className="cta-detail">info@pixenect.com</a>
-          </div>
-          <p className="cta-blurb">
-            Ready to get started with {service.title}? Tell us about your
-            project and we&apos;ll respond with a tailored proposal within 48 hours.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Footer ────────────────────────────────── */}
-      <footer className="site-footer">
-        <div className="footer-cta-band" data-reveal>
-          <div className="footer-cta-text">
-            <p className="footer-cta-eyebrow">Let's work together</p>
-            <h2 className="footer-cta-heading">Ready to build something<br />remarkable?</h2>
-          </div>
-          <Link to="/#contact" className="footer-cta-action">
-            Start a Project <i className="ti ti-arrow-up-right" aria-hidden="true" />
-          </Link>
-        </div>
-
-        <div className="footer-shell" data-reveal style={{ '--reveal-delay': '120ms' }}>
-          <section className="footer-brand-col" aria-label="Company details and contact">
-            <div className="footer-brand-name" aria-label="Pixenect logo">
-              <img src={logo} alt="Pixenect logo" width="194" height="45" className="footer-brand-logo" />
-            </div>
-            <p className="footer-brand-copy">
-              We design, build, and grow high-performance digital products for
-              ambitious brands that want clarity, speed, and measurable results.
-            </p>
-
-            <form className="footer-subscribe" onSubmit={(e) => e.preventDefault()}>
-              <input
-                className="footer-email-input"
-                type="email"
-                placeholder="Enter your email"
-                aria-label="Enter your email"
-              />
-              <button type="submit" className="footer-subscribe-btn">
-                Subscribe <i className="ti ti-arrow-up-right" aria-hidden="true" />
-              </button>
-            </form>
-
-            <div className="footer-contact-lines">
-              <a href="mailto:info@pixenect.com">info@pixenect.com</a>
-              <span className="footer-contact-sep" aria-hidden="true">|</span>
-              <a href="tel:+905428861113">+90 542 886 1113</a>
-            </div>
-          </section>
-
-          <section className="footer-links-grid" aria-label="Footer navigation">
-            <div className="footer-link-col">
-              <h3>Services</h3>
-              {Object.entries(SERVICE_DATA).map(([slugKey, svc]) => (
-                <Link key={slugKey} to={`/services/${slugKey}`}>{svc.title}</Link>
-              ))}
-            </div>
-
-            <div className="footer-link-col">
-              <h3>Company</h3>
-              <Link to="/about">About</Link>
-              <Link to="/#services">Services</Link>
-              <Link to="/#process">Our Work</Link>
-              <Link to="/#contact">Contact</Link>
-            </div>
-
-            <div className="footer-link-col">
-              <h3>Get Started</h3>
-              <Link to="/#contact">Start a Project</Link>
-              <a href="mailto:info@pixenect.com">Email Us</a>
-              <a href="tel:+905428861113">Call Us</a>
-              <Link to="/">Back to Home</Link>
-            </div>
-
-            <div className="footer-link-col footer-link-col--legal">
-              <h3>Legal</h3>
-              <Link to="/privacy">Privacy Policy</Link>
-            </div>
-          </section>
-        </div>
-
-        <div className="footer-bottom">
-          <div className="footer-copy">&copy; 2026 PIXENECT. ALL RIGHTS RESERVED.</div>
-          <div className="footer-socials" aria-label="Social links">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook"><i className="ti ti-brand-facebook" aria-hidden="true" /></a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><i className="ti ti-brand-instagram" aria-hidden="true" /></a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i className="ti ti-brand-linkedin" aria-hidden="true" /></a>
-            <a href="https://x.com/" target="_blank" rel="noreferrer" aria-label="X"><i className="ti ti-brand-x" aria-hidden="true" /></a>
-          </div>
-        </div>
-      </footer>
+      <CtaSection />
+      <SiteFooter />
     </div>
   );
 }

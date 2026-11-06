@@ -1,0 +1,158 @@
+export const MARKERS = [
+  { code: 'IST', name: 'Istanbul', lat: 41.0082, lon: 28.9784, hq: true },
+  { code: 'LDN', name: 'London', lat: 51.5072, lon: -0.1276 },
+  { code: 'BER', name: 'Berlin', lat: 52.52, lon: 13.405 },
+  { code: 'DXB', name: 'Dubai', lat: 25.2048, lon: 55.2708 },
+  { code: 'NYC', name: 'New York', lat: 40.7128, lon: -74.006 },
+  { code: 'SFO', name: 'San Francisco', lat: 37.7749, lon: -122.4194 },
+  { code: 'GRU', name: 'São Paulo', lat: -23.5505, lon: -46.6333 },
+  { code: 'SIN', name: 'Singapore', lat: 1.3521, lon: 103.8198 },
+  { code: 'TYO', name: 'Tokyo', lat: 35.6762, lon: 139.6503 },
+];
+
+export const HQ = MARKERS.find((marker) => marker.hq);
+
+export const VISITOR_CODE = 'YOU';
+
+// Visitor location comes from the device time zone: no permission prompt and no network lookup.
+const TIMEZONE_CITIES = {
+  'Europe/London': ['London', 51.51, -0.13],
+  'Europe/Dublin': ['Dublin', 53.35, -6.26],
+  'Europe/Lisbon': ['Lisbon', 38.72, -9.14],
+  'Europe/Madrid': ['Madrid', 40.42, -3.7],
+  'Europe/Paris': ['Paris', 48.86, 2.35],
+  'Europe/Brussels': ['Brussels', 50.85, 4.35],
+  'Europe/Amsterdam': ['Amsterdam', 52.37, 4.9],
+  'Europe/Berlin': ['Berlin', 52.52, 13.4],
+  'Europe/Zurich': ['Zurich', 47.38, 8.54],
+  'Europe/Rome': ['Rome', 41.9, 12.5],
+  'Europe/Vienna': ['Vienna', 48.21, 16.37],
+  'Europe/Prague': ['Prague', 50.08, 14.44],
+  'Europe/Warsaw': ['Warsaw', 52.23, 21.01],
+  'Europe/Budapest': ['Budapest', 47.5, 19.04],
+  'Europe/Belgrade': ['Belgrade', 44.79, 20.45],
+  'Europe/Stockholm': ['Stockholm', 59.33, 18.07],
+  'Europe/Oslo': ['Oslo', 59.91, 10.75],
+  'Europe/Copenhagen': ['Copenhagen', 55.68, 12.57],
+  'Europe/Helsinki': ['Helsinki', 60.17, 24.94],
+  'Europe/Athens': ['Athens', 37.98, 23.73],
+  'Europe/Bucharest': ['Bucharest', 44.43, 26.1],
+  'Europe/Sofia': ['Sofia', 42.7, 23.32],
+  'Europe/Kiev': ['Kyiv', 50.45, 30.52],
+  'Europe/Kyiv': ['Kyiv', 50.45, 30.52],
+  'Europe/Moscow': ['Moscow', 55.76, 37.62],
+  'Europe/Istanbul': ['Istanbul', 41.01, 28.98],
+  'Africa/Cairo': ['Cairo', 30.04, 31.24],
+  'Africa/Casablanca': ['Casablanca', 33.57, -7.59],
+  'Africa/Algiers': ['Algiers', 36.75, 3.06],
+  'Africa/Tunis': ['Tunis', 36.81, 10.18],
+  'Africa/Lagos': ['Lagos', 6.52, 3.38],
+  'Africa/Accra': ['Accra', 5.6, -0.19],
+  'Africa/Abidjan': ['Abidjan', 5.36, -4.01],
+  'Africa/Dakar': ['Dakar', 14.72, -17.47],
+  'Africa/Monrovia': ['Monrovia', 6.3, -10.8],
+  'Africa/Freetown': ['Freetown', 8.48, -13.23],
+  'Africa/Khartoum': ['Khartoum', 15.5, 32.56],
+  'Africa/Addis_Ababa': ['Addis Ababa', 9.03, 38.74],
+  'Africa/Nairobi': ['Nairobi', -1.29, 36.82],
+  'Africa/Kampala': ['Kampala', 0.35, 32.58],
+  'Africa/Kigali': ['Kigali', -1.95, 30.06],
+  'Africa/Dar_es_Salaam': ['Dar es Salaam', -6.79, 39.21],
+  'Africa/Kinshasa': ['Kinshasa', -4.44, 15.27],
+  'Africa/Lubumbashi': ['Lubumbashi', -11.66, 27.48],
+  'Africa/Luanda': ['Luanda', -8.84, 13.23],
+  'Africa/Lusaka': ['Lusaka', -15.39, 28.32],
+  'Africa/Harare': ['Harare', -17.83, 31.05],
+  'Africa/Blantyre': ['Blantyre', -15.79, 35.01],
+  'Africa/Maputo': ['Maputo', -25.97, 32.57],
+  'Africa/Gaborone': ['Gaborone', -24.63, 25.92],
+  'Africa/Windhoek': ['Windhoek', -22.56, 17.08],
+  'Africa/Johannesburg': ['Johannesburg', -26.2, 28.05],
+  'Asia/Dubai': ['Dubai', 25.2, 55.27],
+  'Asia/Qatar': ['Doha', 25.29, 51.53],
+  'Asia/Riyadh': ['Riyadh', 24.71, 46.68],
+  'Asia/Baghdad': ['Baghdad', 33.31, 44.36],
+  'Asia/Tehran': ['Tehran', 35.69, 51.39],
+  'Asia/Jerusalem': ['Jerusalem', 31.77, 35.21],
+  'Asia/Beirut': ['Beirut', 33.89, 35.5],
+  'Asia/Amman': ['Amman', 31.95, 35.93],
+  'Asia/Baku': ['Baku', 40.41, 49.87],
+  'Asia/Tbilisi': ['Tbilisi', 41.72, 44.79],
+  'Asia/Yerevan': ['Yerevan', 40.18, 44.51],
+  'Asia/Tashkent': ['Tashkent', 41.3, 69.24],
+  'Asia/Almaty': ['Almaty', 43.24, 76.89],
+  'Asia/Karachi': ['Karachi', 24.86, 67.01],
+  'Asia/Kolkata': ['Kolkata', 22.57, 88.36],
+  'Asia/Calcutta': ['Kolkata', 22.57, 88.36],
+  'Asia/Kathmandu': ['Kathmandu', 27.72, 85.32],
+  'Asia/Dhaka': ['Dhaka', 23.81, 90.41],
+  'Asia/Bangkok': ['Bangkok', 13.76, 100.5],
+  'Asia/Ho_Chi_Minh': ['Ho Chi Minh City', 10.82, 106.63],
+  'Asia/Saigon': ['Ho Chi Minh City', 10.82, 106.63],
+  'Asia/Jakarta': ['Jakarta', -6.21, 106.85],
+  'Asia/Kuala_Lumpur': ['Kuala Lumpur', 3.14, 101.69],
+  'Asia/Singapore': ['Singapore', 1.35, 103.82],
+  'Asia/Manila': ['Manila', 14.6, 120.98],
+  'Asia/Shanghai': ['Shanghai', 31.23, 121.47],
+  'Asia/Hong_Kong': ['Hong Kong', 22.32, 114.17],
+  'Asia/Taipei': ['Taipei', 25.03, 121.57],
+  'Asia/Seoul': ['Seoul', 37.57, 126.98],
+  'Asia/Tokyo': ['Tokyo', 35.68, 139.65],
+  'Australia/Perth': ['Perth', -31.95, 115.86],
+  'Australia/Adelaide': ['Adelaide', -34.93, 138.6],
+  'Australia/Brisbane': ['Brisbane', -27.47, 153.03],
+  'Australia/Melbourne': ['Melbourne', -37.81, 144.96],
+  'Australia/Sydney': ['Sydney', -33.87, 151.21],
+  'Pacific/Auckland': ['Auckland', -36.85, 174.76],
+  'Pacific/Honolulu': ['Honolulu', 21.31, -157.86],
+  'America/Anchorage': ['Anchorage', 61.22, -149.9],
+  'America/Vancouver': ['Vancouver', 49.28, -123.12],
+  'America/Los_Angeles': ['Los Angeles', 34.05, -118.24],
+  'America/Phoenix': ['Phoenix', 33.45, -112.07],
+  'America/Denver': ['Denver', 39.74, -104.99],
+  'America/Edmonton': ['Edmonton', 53.55, -113.49],
+  'America/Winnipeg': ['Winnipeg', 49.9, -97.14],
+  'America/Chicago': ['Chicago', 41.88, -87.63],
+  'America/Detroit': ['Detroit', 42.33, -83.05],
+  'America/Toronto': ['Toronto', 43.65, -79.38],
+  'America/New_York': ['New York', 40.71, -74.01],
+  'America/Halifax': ['Halifax', 44.65, -63.57],
+  'America/Mexico_City': ['Mexico City', 19.43, -99.13],
+  'America/Guatemala': ['Guatemala City', 14.63, -90.51],
+  'America/Costa_Rica': ['San José', 9.93, -84.08],
+  'America/Panama': ['Panama City', 8.98, -79.52],
+  'America/Havana': ['Havana', 23.11, -82.37],
+  'America/Jamaica': ['Kingston', 17.97, -76.79],
+  'America/Puerto_Rico': ['San Juan', 18.47, -66.11],
+  'America/Caracas': ['Caracas', 10.48, -66.9],
+  'America/Bogota': ['Bogotá', 4.71, -74.07],
+  'America/Guayaquil': ['Guayaquil', -2.17, -79.92],
+  'America/Lima': ['Lima', -12.05, -77.04],
+  'America/La_Paz': ['La Paz', -16.49, -68.12],
+  'America/Santiago': ['Santiago', -33.45, -70.67],
+  'America/Argentina/Buenos_Aires': ['Buenos Aires', -34.6, -58.38],
+  'America/Buenos_Aires': ['Buenos Aires', -34.6, -58.38],
+  'America/Montevideo': ['Montevideo', -34.9, -56.16],
+  'America/Sao_Paulo': ['São Paulo', -23.55, -46.63],
+};
+
+const SAME_CITY_DEGREES = 1.5;
+
+export function detectVisitorLocation() {
+  let zone;
+  try {
+    zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch {
+    return null;
+  }
+  const city = TIMEZONE_CITIES[zone];
+  if (!city) return null;
+
+  const [name, lat, lon] = city;
+  const match = MARKERS.find(
+    (marker) => Math.abs(marker.lat - lat) < SAME_CITY_DEGREES && Math.abs(marker.lon - lon) < SAME_CITY_DEGREES,
+  );
+  return match
+    ? { name: match.name, lat: match.lat, lon: match.lon, matchCode: match.code }
+    : { name, lat, lon, matchCode: null };
+}

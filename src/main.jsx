@@ -6,6 +6,10 @@ import App from './App.jsx'
 import ServiceDetail from './ServiceDetail.jsx'
 import About from './About.jsx'
 import ProjectProcess from './ProjectProcess.jsx'
+import Terms from './Terms.jsx'
+import CookieConsent from './components/CookieConsent.jsx'
+import SiteLoader from './components/SiteLoader.jsx'
+import ScrollProgress from './components/ScrollProgress.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,8 +18,12 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
         <Route path="/process" element={<ProjectProcess />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
       </Routes>
+      <ScrollProgress />
+      <CookieConsent />
+      <SiteLoader />
     </BrowserRouter>
   </StrictMode>,
 )

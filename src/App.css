@@ -1,4 +1,4 @@
-﻿/* ================================================
+/* ================================================
    KALM.WORKS INSPIRED DARK THEME — PIXENECT
    ================================================ */
 
@@ -1472,6 +1472,10 @@ a.nav-logo {
 .rewrite-service .svc-item-sub { font-family: 'Space Grotesk', sans-serif; font-style: normal; font-size: 13px; color: rgba(18,22,29,0.56); }
 .rewrite-service-body { align-items: flex-end; padding-top: 2px; }
 .rewrite-service-body p { margin-bottom: 8px; }
+.rewrite-service-body .service-description { color: var(--text-dark-soft); line-height: 1.72; margin-bottom: 12px; }
+.rewrite-service-body .service-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.rewrite-service-body .service-list li { color: var(--text-dark); font-size: 14px; position: relative; padding-left: 14px; }
+.rewrite-service-body .service-list li::before { content: '-'; position: absolute; left: 0; color: var(--accent-primary); font-weight: 700; }
 .rewrite-service-body strong { color: var(--text-dark); font-weight: 600; }
 .rewrite-service-body .service-problem { margin-bottom: 10px; }
 .rewrite-why { padding-top: 112px; }
